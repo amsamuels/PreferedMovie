@@ -7,6 +7,12 @@ import { getData } from "../../../utils/getRandomFilm";
   
 export const t = initTRPC.create();
 
+type Movie = {
+  id : string;
+  title: string;
+  img: string;
+  }
+
 export const movieRouter = t.router({
   // Create procedure at path 'getfilbyID'
   getfilbyID: t.procedure
@@ -15,9 +21,9 @@ export const movieRouter = t.router({
       z.object({ id: z.any()})
     )
     .query( async ({ input })  =>  {
-      const movie = await getData(input.id)
+      const movie  = await getData(input.id)
       return {
-        movie: movie as any,
+        movie: movie as Movie,
       }
     }), voteCast: t.procedure.input(z.object({
       votedFor: z.number(),
@@ -25,9 +31,10 @@ export const movieRouter = t.router({
     }),).mutation( async ({ input }) => {
       const voteIndb =  await  prisma.vote.create({
         data: {
-          ...input,
-        }
-
+          votedAgainstId: input.votedAgainst,
+          votedForId: input.votedFor,
+          
+        },
       }) 
       return { success: true, vote: voteIndb };
     }),

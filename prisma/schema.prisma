@@ -19,6 +19,9 @@ model Vote {
   votedForId     Int
   votedAgainst   Film @relation(name: "votesAgainst", fields: [votedAgainstId], references: [id])
   votedAgainstId Int
+
+  @@index([votedForId])
+  @@index([votedAgainstId])
 }
 
 model Film {

@@ -15,7 +15,7 @@ export const getOptionsForVote = () => {
 
 export async function getData(id:any) {
     // Set the URL of the API endpoint
-    const url =  `http://localhost:8080/data/${id}`;
+    const url =  `http://localhost:8080/film/${id}`;
   
     // Set the request options
     const options: RequestInit = {
