@@ -44,7 +44,7 @@ const Home: NextPage = () => {
           </h1>
           <div className="container ml-auto mr-auto flex gap-4 flex-col sm:flex-row justify-center items-center">
             <div className="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
-              <div className="bg-white/10 rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
+              <div onClick={() => voteRating(filmPair?.filmOne?.id as number)}  className="bg-white/10 rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
                 <figure className="mb-2">
                   {filmPair && <Image src={filmPair.filmOne?.img} alt="imgsec" width={166} height={166} className=" ml-auto mr-auto" />}
                 </figure>
@@ -53,11 +53,6 @@ const Home: NextPage = () => {
                     {filmPair && <h5 className="text-white text-2xl font-bold leading-none">
                       {filmPair?.filmOne?.name}
                     </h5>}
-                  </div>
-                  <div className="flex items-center">
-                    <div className="text-lg  text-white mt-2 font-light">
-                      <button onClick={() => voteRating(filmPair?.filmOne?.id as number)} className="rounded-xl p-2 bg-white/30 font-bold">Preferred</button>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -69,7 +64,7 @@ const Home: NextPage = () => {
               {!filmPair &&  <img src="/puff.svg" className="w-48" />}
             </div>
             <div className="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
-              <div className="bg-white/10 rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
+              <div onClick={() => voteRating(filmPair?.filmTwo?.id as number)} className="bg-white/10 rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
                 <figure className="mb-2">
                   {filmPair && <Image src={filmPair?.filmTwo?.img} alt="imgsec" width={166} height={166} className=" ml-auto mr-auto" />}
                 </figure>
@@ -78,11 +73,6 @@ const Home: NextPage = () => {
                     {filmPair && <h5 className="text-white text-2xl font-bold leading-none">
                       {filmPair?.filmTwo?.name}
                     </h5>}
-                  </div>
-                  <div className="flex items-center">
-                    <div className="text-lg  text-white mt-2 font-light">
-                      <button onClick={() => voteRating(filmPair?.filmTwo?.id as number)} className="rounded-xl p-2 bg-white/30 font-bold">Preferred</button>
-                    </div>
                   </div>
                 </div>
               </div>
