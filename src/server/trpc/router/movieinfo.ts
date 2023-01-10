@@ -1,15 +1,14 @@
 import { z } from "zod";
 import { initTRPC } from '@trpc/server';
 import { prisma } from "../../db/client";
-import { getData } from "../../../utils/getRandomFilm";
-
+import { getData,getOptionsForVote } from "../../../utils/getRandomFilm";
 
   
 export const t = initTRPC.create();
 
-type Movie = {
-  id : string;
-  title: string;
+type Film = {
+  id : number;
+  name: string;
   img: string;
   }
 
@@ -17,15 +16,18 @@ export const movieRouter = t.router({
   // Create procedure at path 'getfilbyID'
   getfilbyID: t.procedure
     // using zod schema to validate and infer input values
-    .input(
-      z.object({ id: z.any()})
-    )
-    .query( async ({ input })  =>  {
-      const movie  = await getData(input.id)
+    .query( async ()  =>  {
+      const [first, second] = getOptionsForVote();
+      const twoFilms = await prisma.film.findMany({
+        where: { id: { in: [first as number, second as number] } },
+      });
+
+      if (twoFilms.length !== 2)
+        throw new Error("Failed to find two pokemon");
       return {
-        movie: movie as Movie,
-      }
-    }), voteCast: t.procedure.input(z.object({
+        filmOne: twoFilms[0] as Film, filmTwo: twoFilms[1] as Film,}
+    }),
+     voteCast: t.procedure.input(z.object({
       votedFor: z.number(),
       votedAgainst: z.number(),
     }),).mutation( async ({ input }) => {
@@ -33,7 +35,6 @@ export const movieRouter = t.router({
         data: {
           votedAgainstId: input.votedAgainst,
           votedForId: input.votedFor,
-          
         },
       }) 
       return { success: true, vote: voteIndb };

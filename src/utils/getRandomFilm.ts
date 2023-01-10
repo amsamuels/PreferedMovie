@@ -10,8 +10,11 @@ export const getRandomFilm: (notThisone?:number) => number  = (notThisone?: numb
 export const getOptionsForVote = () => {
     const fisrtId:number = getRandomFilm();
     const secondId:number = getRandomFilm(fisrtId);
-    return [fisrtId  as number, secondId];
+    return [fisrtId  as number, secondId as number];
 }
+
+export type AsyncReturnType<T extends (...args: any) => Promise<any>> =
+  T extends (...args: any) => Promise<infer R> ? R : any;
 
 export async function getData(id:any) {
     // Set the URL of the API endpoint
