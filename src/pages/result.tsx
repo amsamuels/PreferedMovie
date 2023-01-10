@@ -41,10 +41,10 @@ const FilmListing: React.FC<{ film: FilmQueryResult[number],  rank:number}> = ({
                 <td className="w-32 p-4">
                 <Image src={film?.img} alt="imgsec" width={116}height={116} className=" ml-auto mr-auto" />
                 </td>
-                <td className="px-2 py-4 font-semibold text-gray-900 dark:text-white">
+                <td className="px-2 py-4 font-semibold text-gray-900 ">
                 {film?.name}
                 </td>
-                <td className="px-2 py-4 font-semibold text-end text-gray-900 dark:text-white">
+                <td className="px-2 py-4 font-semibold text-end text-gray-900 ">
                 {generateCountPercent(film).toFixed(2) + "%"}
                 </td>
                 <td className="absolute top-0 left-0 z-20 flex items-center justify-center px-2 font-semibold text-white bg-purple-600 border border-purple-500 shadow-lg rounded-br-md">
