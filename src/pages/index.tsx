@@ -1,7 +1,5 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { getOptionsForVote } from "../utils/getRandomFilm";
-import { useState } from "react";
 import { trpc } from "../utils/trpc";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,7 +8,7 @@ import { usePlausible } from "next-plausible";
 
 
 const Home: NextPage = () => {
-  const { data: filmPair, refetch, isLoading, } = trpc.movie.getfilbyID.useQuery();
+  const { data: filmPair, refetch } = trpc.movie.getfilbyID.useQuery();
   const sendVote = trpc.movie.voteCast.useMutation({});
   const plausible = usePlausible();
 

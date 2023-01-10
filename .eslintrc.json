@@ -7,7 +7,7 @@
   "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
   "rules": {
     "semi": "off",
-    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/semi": "warn",
     "@typescript-eslint/consistent-type-imports": "warn"
   }
 }

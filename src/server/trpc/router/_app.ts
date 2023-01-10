@@ -1,5 +1,3 @@
-import { inferProcedureOutput } from "@trpc/server";
-import { type } from "os";
 import { router } from "../trpc";
 import { movieRouter } from "./movieinfo";
 
