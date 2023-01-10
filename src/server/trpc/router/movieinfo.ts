@@ -7,9 +7,9 @@ import { getData,getOptionsForVote } from "../../../utils/getRandomFilm";
 export const t = initTRPC.create();
 
 type Film = {
-  id : number;
-  name: string;
-  img: string;
+  id : number,
+  name: string,
+  img: string,
   }
 
 export const movieRouter = t.router({
