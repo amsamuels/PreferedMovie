@@ -2,7 +2,6 @@ import { z } from "zod";
 import { initTRPC } from '@trpc/server';
 import { prisma } from "../../db/client";
 import { getOptionsForVote } from "../../../utils/getRandomFilm";
-
   
 export const t = initTRPC.create();
 
