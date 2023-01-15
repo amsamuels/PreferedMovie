@@ -32,7 +32,7 @@ const generateCountPercent = (film: FilmQueryResult[number]) => {
   return (VoteFor / (VoteFor + VoteAgainst)) * 100;
 };
 
-const FilmListing: React.FC<{ film: FilmQueryResult[number],  rank:number}> = ({film,rank}) => {
+const FilmListing: React.FC<{ film: FilmQueryResult[number], rank:number}> = ({film,rank}) => {
   return (
     <div className="relative overflow-x-auto bg-white/10 shadow-md m-2">
     <table className="w-full text-sm text-left  ">
@@ -49,7 +49,10 @@ const FilmListing: React.FC<{ film: FilmQueryResult[number],  rank:number}> = ({
                 </td>
                 <td className="absolute top-0 left-0 z-20 flex items-center justify-center px-2 font-semibold text-white bg-purple-600 border border-purple-500 shadow-lg rounded-br-md">
                   {rank}
-                  </td>
+                </td>
+                <td className="absolute top-0 left-0 z-20 flex items-center justify-center px-2 mt-[155px]  font-semibold text-white bg-purple-600 border border-purple-500 shadow-lg rounded-br-md">
+                {film._count.VoteFor} Votes
+                </td>
             </tr>
         </tbody>
     </table>
